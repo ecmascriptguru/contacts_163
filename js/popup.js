@@ -53,7 +53,7 @@
 			var blob = new Blob([finalVal],{type: 'text/csv;charset=utf-8;'});
 			var url = URL.createObjectURL(blob);
 			pom.href = url;
-			pom.setAttribute('download', 'foo.csv');
+			pom.setAttribute('download', 'export.csv');
 			pom.click();
 		},
 
