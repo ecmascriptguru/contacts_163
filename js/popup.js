@@ -47,7 +47,7 @@
 				finalVal += '\n';
 			}
 
-			// console.log(finalVal);
+			finalVal = "\ufeff" + finalVal;
 
 			var pom = document.createElement('a');
 			var blob = new Blob([finalVal],{type: 'text/csv;charset=utf-8;'});
