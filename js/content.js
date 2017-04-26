@@ -86,11 +86,13 @@ let ContentScript = (function() {
 				_data.push(_tempValue);
 			}
 
-			console.log(_data);
+			return _data;
 		},
 		init = function() {
 			chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-				exportData();
+				sendResponse({
+					data: exportData()
+				});
 			});
 		};
 		
