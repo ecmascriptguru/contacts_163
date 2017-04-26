@@ -5,7 +5,7 @@
 	"short_name": "SixDegrees",
 	"description": "SixDegrees",
 	"author": "Alexis Richard",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	
 	"permissions": [
 		"*://mailhz.qiye.163.com/js6/*",
