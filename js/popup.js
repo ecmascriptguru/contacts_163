@@ -1,6 +1,6 @@
-﻿var Popup = (function() {
+﻿let Popup = (function() {
 
-	var init = function() {
+	let init = function() {
 		//
 	};
 
