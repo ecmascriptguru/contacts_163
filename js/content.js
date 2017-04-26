@@ -9,10 +9,10 @@ let ContentScript = (function() {
 				result = {};
 
 			info = info.trim();
-			if (info.indexOf(" at ") > -1 && info.split(" at ") > 1) {
+			if (info.indexOf(" at ") > -1 && info.split(" at ").length > 1) {
 				result = {
-					position: info.split(" at ")[1].trim(),
-					company: info.split(" at ")[0].trim()
+					company: info.split(" at ")[1].trim(),
+					position: info.split(" at ")[0].trim()
 				}
 			} else {
 				let segs = info.split(" ");
@@ -24,14 +24,26 @@ let ContentScript = (function() {
 		},
 
 		exportData = function() {
-			let _emailBody = $($("iframe")[0].contentDocument).children().find("body > div"),
-				_tables = _emailBody.find("table"),
+			let _iframes = $("iframe"),
+				_emailBody = null;
+			for (let i = 0; i < _iframes.length; i ++) {
+				let _parentDiv = _iframes.eq(i).parents(".vC0.frame-main");
+				if (_parentDiv.css("display") == "block") {
+					_emailBody = $($("iframe")[i].contentDocument).children().find("body > div");
+				}
+			}
+
+			if (!_emailBody) {
+				return false;
+			}
+
+			let _tables = _emailBody.find("table"),
 				_tempValue = {},
 				_flag = null;
 
 			_data = [];
 
-			for (let i = 1; i < _tables.length; i++) {
+			for (let i = 0; i < _tables.length; i++) {
 				let curTable = $(_tables[i])
 
 				if (_flag != "company" && curTable.text().indexOf("#") == 0) {
