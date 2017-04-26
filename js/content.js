@@ -60,14 +60,15 @@ let ContentScript = (function() {
 							val = $cols.eq(2).text().trim();
 
 						if (key.indexOf(":") > -1) {
-							key = key.split(":")[0].trim();
+							key = key.split(":")[0].trim().toLowerCase();
 						}
 
-						if (val.indexOf("+") == 0) {
+						if (key.indexOf("phone") == 0 && val.indexOf("+") == 0) {
 							val = val.split("+")[1].trim();
+							val = val.split(" ").join("");
 						}
 							
-						_tempValue[key.toLowerCase()] = val;
+						_tempValue[key] = val;
 					}
 					_flag = "contacts";
 				} else if(_flag == "contacts") {
